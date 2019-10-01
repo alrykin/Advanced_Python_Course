@@ -4,9 +4,9 @@
 class Vehicle:
 
     def __init__(self, color=None, doors=4, brand=None, ):
-        self.doors = doors
-        self.color = color
-        self.brand = brand
+        self._doors = doors
+        self._color = color
+        self._brand = brand
 
     def purpose(self):
         return "purpose of Vehicle depends..."
@@ -27,7 +27,7 @@ class Truck(Vehicle):
         return weight >= 500
 
 
-MyCar = Truck(brand = 'KRAZ')
+MyCar = Truck(brand='KRAZ')
 print(MyCar.purpose())
 print(MyCar.carrying_capacity(600))
 
@@ -96,7 +96,7 @@ class Coordinats:
         self.z = z
 
     def __mul__(self, other):
-        print(self.x * other.x, self.y * other.y, self.z * other.z)
+        return(self.x * other.x, self.y * other.y, self.z * other.z)
 
 
 coord = Coordinats(1,2,3)
@@ -104,4 +104,4 @@ coord.set_x(1)
 coord.get_x()
 coord2 =  Coordinats(1,2,3)
 
-coord * coord2
+print(coord * coord2)
