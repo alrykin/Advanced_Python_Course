@@ -41,7 +41,7 @@ class EStore:
         self._sold_goods = sold_goods
         self._title = title
 
-    def sold(self,  num = 1):
+    def sold(self,  num=1):
         self._sold_goods = self._sold_goods + num
         EStore.ALL_STORES_SOLD = EStore.ALL_STORES_SOLD + num
 
