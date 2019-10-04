@@ -23,12 +23,6 @@ def decorator(num_of_repeats=1):
 @decorator(5)
 def some_func():
     time.sleep(1)
-    pass
+
 
 print(some_func())
-
-
-import time
-start_time = time.time()
-time.sleep(1)
-print("--- %s seconds ---" % (time.time() - start_time))
