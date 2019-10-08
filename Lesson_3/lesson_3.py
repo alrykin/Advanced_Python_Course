@@ -32,31 +32,137 @@ print(some_func())
 
 
 
-##Home Work
+# #Home Work
 # Создать класс структуры данных Стек, Очередь.
 # Создать класс комплексного числа и реализовать для него арифметические операции.
-# дополнительное задание: предусмотреть pop при пустом стеке,  ограничить размер стека, _STACK_DICT засунуть в инит
-# class MyStack():
-#     _STACK_DICT = []
-#
-#     def __init__(self):
-#         pass
-#
-#     def push(self, var):
-#         MyStack._STACK_DICT.append(var)
-#
-#     def get_stack(self):
-#         return MyStack._STACK_DICT
-#
-#     def pop(self):
-#         return MyStack._STACK_DICT.pop()
-#
-# stack_test = MyStack()
-# stack_test.push(7)
-# stack_test.push(1)
-# stack_test.push(2)
-# stack_test.push(3)
-# stack_test.push(4)
-# print(stack_test.get_stack())
-# print(stack_test.pop())
-# print(stack_test.get_stack())
+# ДОПОЛНИТЕЛЬНОЕ ЗАДАНИЕ: предусмотреть pop при пустом стеке,  ограничить размер стека
+class MyStack():
+
+    def __init__(self):
+        self._STACK_LIST = []
+
+    def push(self, var):
+        if len(self._STACK_LIST) > 100:
+            raise Exception("The stack is full")
+        else:
+            self._STACK_LIST.append(var)
+
+    def get_stack(self):
+        return self._STACK_LIST
+
+    def pop(self):
+        if self._STACK_LIST:
+            return self._STACK_LIST.pop()
+        else:
+            raise Exception("The stack is empty")
+
+stack_test = MyStack()
+stack_test.push(1)
+stack_test.push(2)
+stack_test.push(3)
+print(stack_test.pop())
+
+
+
+
+class MyQueue():
+
+    def __init__(self):
+        self._QUEUE_LIST  = []
+
+    def enqueue(self, var):
+        if len(self._QUEUE_LIST) > 100:
+             raise Exception("The Queue is full")
+        self._QUEUE_LIST.insert(0, var)
+
+    def dequeue(self):
+        if self._QUEUE_LIST:
+            return self._QUEUE_LIST.pop()
+        else:
+            raise Exception("The Queue is empty")
+
+
+some_queue = MyQueue()
+some_queue.enqueue(1)
+some_queue.enqueue(2)
+some_queue.enqueue(3)
+print(some_queue.dequeue())
+
+
+
+
+
+class Complex:
+
+    def __init__(self, real, imag):
+        self.real = real
+        self.imag = imag
+
+    def __str__(self):
+        sign = '+' if self.imag >= 0 else ''
+        return f'{self.real}{sign}{self.imag}i'
+
+    def __add__(self,other):
+        z_real = self.real+other.real
+        z_imag = self.imag+other.imag
+
+        if z_real == 0 and z_imag == 0:
+            return 0
+        elif z_real == 0 and z_imag != 0:
+            return str(z_imag)+"i"
+        elif z_imag == 0:
+            return str(z_real)
+        else:
+            return Complex(z_real, z_imag)
+
+
+    def __sub__(self,other):
+        z_real = self.real-other.real
+        z_imag = self.imag-other.imag
+
+        if z_real == 0 and z_imag == 0:
+            return 0
+        elif z_real == 0 and z_imag != 0:
+            return str(z_imag)+"i"
+        elif z_imag == 0:
+            return str(z_real)
+        elif z_imag < 0:
+            return str(z_real) + str(z_imag) + "i"
+        else:
+            return str(z_real) + "+" + str(z_imag) + "i"
+
+    def __mul__(self,other):
+        z1 = (self.real*other.real)
+        z2 = (self.real*other.imag) #i
+        z3 = (self.imag*other.real) #i
+        z4 = (self.imag*other.imag)*-1
+
+        z_real = z4 + z1
+        z_imag = z2 + z3
+
+        z_imag = z2 - z3*-1
+        if z_real == 0 and z_imag == 0:
+            return 0
+        elif z_real == 0 and z_imag != 0:
+            return str(z_imag)+"i"
+        elif z_imag == 0:
+            return str(z_real)
+        else:
+            return Complex(z_real, z_imag)
+
+
+    def __truediv__(self, other):
+        other_sopr = Complex(other.real , other.imag*-1)
+        divisor = self * other_sopr
+        divided = (other.real * other.real) + (other.imag * other.imag)
+        return Complex(divisor.real/divided, divisor.imag/divided)
+
+
+x = Complex(2,4)
+y = Complex(1, 6)
+print(x)
+print(y)
+print(x + y)
+print(x - y)
+print(x*y)
+print(x/y)
