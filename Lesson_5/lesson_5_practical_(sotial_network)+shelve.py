@@ -16,6 +16,7 @@
 
 from getpass import getpass
 from datetime import datetime
+import time
 import shelve
 
 logo_text = """
@@ -182,18 +183,19 @@ class Interface():
 
     def create_post(self):
         post = input("\nВведите текст Вашего поста\n")
-        date = datetime.today().strftime('%Y-%m-%d')
-        db.POSTS = {"date": date, "author": self._username, "post": post}
-        print("Пост добавлен")
+        if post:
+            date = datetime.today().strftime('%Y-%m-%d')
+            db.POSTS = {"date": date, "author": self._username, "post": post}
+            print("Пост добавлен")
 
     def get_users_info(self):
         print("\nПользователи системы:\n")
         USER_DB = db.USER_DB
         for i in USER_DB:
-            print("=======================================================")
+            print("="*55)
             print("username: " + i + "\nдата регистрации: " + USER_DB[i]["register_date"])
             self.get_author_posts(i)
-            print("=======================================================")
+            print("="*55)
 
     def get_posts(self):
         print("\nРанее созданные посты:\n")
@@ -208,31 +210,38 @@ class Interface():
 
     def run(self):
         if self._is_admin:
-            user_input = input("\nМеню\nВведите 1 для выхода\nВведите 2 для создания поста\nВведите 3 для просмотра постов\nВведите 4 для просмотра информации о пользователях системы\n")
+            user_input = input("\n~ Меню ~\nВведите 1 для выхода\nВведите 2 для создания поста\nВведите 3 для просмотра постов\nВведите 4 для просмотра информации о пользователях системы\n")
             if user_input == "1":
                 pass
             elif user_input == "2":
                 self.create_post()
+                time.sleep(1)
                 self.run()
             elif user_input == "3":
                 self.get_posts()
+                time.sleep(1)
                 self.run()
             elif user_input == "4":
                 self.get_users_info()
+                time.sleep(1)
                 self.run()
             else:
+                time.sleep(1)
                 self.run()
         else:
-            user_input = input("\nМеню\nВведите 1 для выхода\nВведите 2 для создания поста\nВведите 3 для просмотра постов\n")
+            user_input = input("\n~ Меню ~\nВведите 1 для выхода\nВведите 2 для создания поста\nВведите 3 для просмотра постов\n")
             if user_input == "1":
                 pass
             elif user_input == "2":
                 self.create_post()
+                time.sleep(1)
                 self.run()
             elif user_input == "3":
                 self.get_posts()
+                time.sleep(1)
                 self.run()
             else:
+                time.sleep(1)
                 self.run()
 
 
