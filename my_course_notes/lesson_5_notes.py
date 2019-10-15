@@ -165,48 +165,48 @@
 
 # это синтакс сахар, ме его мжетс сами создать
 
-class ContextManagerExample:
-
-    def __init__(self, a):
-        self._a = a
-        self._state = "active"
-
-    def __enter__(self):
-        print("cm enter")
-        return self
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        print("exit from cm")
-        self._state = "inactive"
-
-    def process(self):
-        print("Processing data")
-
-# obj = ContextManagerExample(10)
-# print(obj._state)
-# obj.process()
-
-with ContextManagerExample(10) as new_obj:
-    print(new_obj._state)
-    new_obj.process
-
-print(new_obj._state)
-
-#### SHELVE #####
-import shelve
-
-filename = "my_db"
-
-with shelve.open(filename) as db:
-    db["key"] = "1000"
-
-def create_user(username):
-    with shelve.open(filename) as db:
-        print(db.items())# вернет иретируемый  обьект
-        print(db["key"])
-        db.has_key(username)# если есть такой  юзер - ексепшн
-        db[f'{username}_posts'] = ['post_1', 'post2']
-
-def get_post(username):
-    with shelve.open(filename) as db:
-        user_posts = db.get(f'username_posts')
+# class ContextManagerExample:
+#
+#     def __init__(self, a):
+#         self._a = a
+#         self._state = "active"
+#
+#     def __enter__(self):
+#         print("cm enter")
+#         return self
+#
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         print("exit from cm")
+#         self._state = "inactive"
+#
+#     def process(self):
+#         print("Processing data")
+#
+# # obj = ContextManagerExample(10)
+# # print(obj._state)
+# # obj.process()
+#
+# with ContextManagerExample(10) as new_obj:
+#     print(new_obj._state)
+#     new_obj.process
+#
+# print(new_obj._state)
+#
+# #### SHELVE #####
+# import shelve
+#
+# filename = "my_db"
+#
+# with shelve.open(filename) as db:
+#     db["key"] = "1000"
+#
+# def create_user(username):
+#     with shelve.open(filename) as db:
+#         print(db.items())# вернет иретируемый  обьект
+#         print(db["key"])
+#         db.has_key(username)# если есть такой  юзер - ексепшн
+#         db[f'{username}_posts'] = ['post_1', 'post2']
+#
+# def get_post(username):
+#     with shelve.open(filename) as db:
+#         user_posts = db.get(f'username_posts')
