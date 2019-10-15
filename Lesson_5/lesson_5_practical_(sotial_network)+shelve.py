@@ -27,7 +27,7 @@ logo_text = """
 
 
 class Shelve_DB:
-
+    """ class for working with shelve storage. Getters and setters """
     def __init__(self, filename):
         self._db = filename
 
@@ -96,7 +96,7 @@ class User:
 
 
 class Register:
-
+    """ Class for users registration """
     def __init__(self):
         pass
 
@@ -142,6 +142,7 @@ class Register:
 
 
 class Authorization(Register):
+    """ Class for authorization. Check if username and password are in USERS_ACCESS_DB """
     def __init__(self):
         self._username = ""
 
@@ -175,7 +176,7 @@ class Authorization(Register):
 
 
 class Interface():
-
+    """ Class for user interface creation depending on the user rights (is_admin ?) """
     def __init__(self, user):
         self._register_date = user.register_date
         self._username = user.username
