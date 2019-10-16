@@ -82,31 +82,44 @@
 
 
 
+#
+# from threading import Thread
+# import time
+# import random
+#
+# some_list = []
+#
+# def random_time_sleep(time_to_sl):
+#     print("!!!!!!!!!!!!!!!!!!!Thread started")
+#     time.sleep(random.randint(0, time_to_sl))
+#     some_list.append(random.randint(0, time_to_sl))
+#     print("!!!!!!!!!!!!!!!!!!!Thread finished")
+#
+# t = Thread(target=random_time_sleep, args=(5,))
+# t.start()
+#
+#
+#
+# print("\nMain thread process......")
+#
+# for _ in range(10):#aninumus var
+#     print("works")
+#     some_list.append(str(random.randint(1, 10))
+#     time.sleep(0.5)
+#     print("Iteration ended")
+#
+#
+# print(some_list)
 
-from threading import Thread
-import time
-import random
+def gen_func(start, end ,step):
+    while start < end:
+        start +=step
+        yield start
+    raise StopIteration
 
-some_list = []
-
-def random_time_sleep(time_to_sl):
-    print("!!!!!!!!!!!!!!!!!!!Thread started")
-    time.sleep(random.randint(0, time_to_sl))
-    some_list.append(random.randint(0, time_to_sl))
-    print("!!!!!!!!!!!!!!!!!!!Thread finished")
-
-t = Thread(target=random_time_sleep, args=(5,))
-t.start()
-
-
-
-print("\nMain thread process......")
-
-for _ in range(10):#aninumus var
-    print("works")
-    some_list.append(str(random.randint(1, 10))
-    time.sleep(0.5)
-    print("Iteration ended")
-
-
-print(some_list)
+obj = gen_func(0,10,1)
+print(obj)
+iter_obj = iter(obj)
+print(next(iter_obj))
+print(next(iter_obj))
+print(next(iter_obj))
