@@ -30,11 +30,16 @@ def city_id_by_name(name):
 
 
 def get_weather(city="Kyiv", period=None):
-    """Function to get weather information. By default, when calling a function without parameters,
+    """
+    Function to get weather information. By default, when calling a function without parameters,
     you will receive the current weather state of Kiev.
+
     If you want to get weather information for another city - set the name of the city in the first function agrument.
     For example:
     get_weather("London")
+
+    Also, you can define the second parameter - the date for the weather forecast? for example:
+    get_weather("London", "2019-10-20")
 
     """
 
