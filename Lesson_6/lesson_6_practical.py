@@ -73,20 +73,91 @@ class MyCustomList:
         #     new_list.append(i)
         # return new_list
 
+
+
 my_list_obj = MyCustomList((10,20,30,40,50))
+# append
 my_list_obj.append(100)
 print(my_list_obj)
+# pop
 print(my_list_obj.pop(2))
 print(my_list_obj)
+# insert
 my_list_obj[0] = 111
 print(my_list_obj)
 print(my_list_obj[0])
+# remove
 print(my_list_obj.remove(10))
 print(my_list_obj)
+# clear
 my_list_obj.clear()
 print(my_list_obj)
 
 my_list_obj = MyCustomList((10,20,30,40,50))
 my_list_obj_2 = MyCustomList((1,2,3,4,5))
-
+# __add__
 print(my_list_obj + my_list_obj_2)
+
+
+
+
+
+# 2) Создать свою структуру данных Словарь, которая поддерживает методы, get, items, keys, values.
+# Так же перегрузить операцию сложения для словарей, которая возвращает новый расширенный объект.
+
+
+class MyCustomDict:
+    def __init__(self, **kwargs):
+        self._dict = kwargs
+
+    def __str__(self):
+        return str(self._dict)
+
+    def __getitem__(self, key):
+        if key not in self._dict:
+            raise KeyError(f"ho-ho, there is no {key} in mycustomdict")
+        else:
+            return self._dict[key]
+
+    def items(self):
+        return_list = []
+        for i in self._dict:
+            return_list.append((i, self._dict[i]))
+        return return_list
+
+    def keys(self):
+        return_list = []
+        for i in self._dict:
+            return_list.append(i)
+        return return_list
+
+    def values(self):
+        return_list = []
+        for i in self._dict:
+            return_list.append(self._dict[i])
+        return return_list
+
+    def __add__(self, other):
+        for i in self._dict:
+            if i in other._dict:
+                raise KeyError("Ho-ho. Keys from 'left' odject intersect with keys from 'right' odject")
+        dict_to_return = self._dict
+        for i in other._dict:
+            dict_to_return[i] = other._dict[i]
+        return dict_to_return
+
+
+
+my_dict_obj = MyCustomDict(a=1,b=2,c=3)
+print(my_dict_obj)
+#get
+print(my_dict_obj['c'])
+#items
+print(my_dict_obj.items())
+#keys
+print(my_dict_obj.keys())
+#values
+print(my_dict_obj.values())
+# __add__
+my_dict_obj2 = MyCustomDict(g=4,f=5)
+print(my_dict_obj + my_dict_obj2)
