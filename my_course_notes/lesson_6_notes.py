@@ -81,7 +81,7 @@ print(next(iter_obj))
 # # можно выражением , это не лист компрех!!!!!!
 # gen_expression = (x**2 for x in range(100))
 # print(gen_expression)
-
+# print(next(gen_expression))
 
 # # Убеждаемся что он замораживается до вызова следующей функции next
 # def gen_func(start, end ,step):

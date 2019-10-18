@@ -165,30 +165,30 @@
 
 # это синтакс сахар, ме его мжетс сами создать
 
-# class ContextManagerExample:
-#
-#     def __init__(self, a):
-#         self._a = a
-#         self._state = "active"
-#
-#     def __enter__(self):
-#         print("cm enter")
-#         return self
-#
-#     def __exit__(self, exc_type, exc_val, exc_tb):
-#         print("exit from cm")
-#         self._state = "inactive"
-#
-#     def process(self):
-#         print("Processing data")
-#
-# # obj = ContextManagerExample(10)
-# # print(obj._state)
-# # obj.process()
-#
-# with ContextManagerExample(10) as new_obj:
-#     print(new_obj._state)
-#     new_obj.process
+class ContextManagerExample:
+
+    def __init__(self, a):
+        self._a = a
+        self._state = "active"
+
+    def __enter__(self):
+        print("cm enter")
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        print("exit from cm")
+        self._state = "inactive"
+
+    def process(self):
+        print("Processing data")
+
+obj = ContextManagerExample(10)
+print(obj._state)
+obj.process()
+
+with ContextManagerExample(10) as new_obj:
+    print(new_obj._state)
+    new_obj.process
 #
 # print(new_obj._state)
 #
