@@ -65,18 +65,18 @@
 ####
 #### ГЕНЕРАТОРЫ
 ####
-# def gen_func(start, end ,step):
-#     while start < end:
-#         start +=step
-#         yield start
-#     raise StopIteration
-#
-# obj = gen_func(0,3,1)
-# print(obj)
-# iter_obj = iter(obj)
-# print(next(iter_obj))
-# print(next(iter_obj))
-# print(next(iter_obj))
+def gen_func(start, end ,step):
+    while start < end:
+        start +=step
+        yield start
+    raise StopIteration
+
+obj = gen_func(0,3,1)
+print(obj)
+iter_obj = iter(obj)
+print(next(iter_obj))
+print(next(iter_obj))
+print(next(iter_obj))
 
 # # можно выражением , это не лист компрех!!!!!!
 # gen_expression = (x**2 for x in range(100))
