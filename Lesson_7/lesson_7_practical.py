@@ -23,9 +23,9 @@ class DBContextManager:
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         print("exit from db cm")
+        self._conn.commit()
         self._conn.close()
 
 
-with DBContextManager("mydb.db") as db_obj:
+with DBContextManager("lesson7_practical.db") as db_obj:
     result = db_obj.execute("insert into user (login, password) values ('a', '111')")
-    
