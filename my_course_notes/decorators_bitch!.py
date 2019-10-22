@@ -31,3 +31,19 @@ def some(var):
 
 
 some("mama")
+
+
+# def access_deco(func):
+#     def wrap(*args):
+#         print("~"*20)
+#         print(*args)
+#         print("~"*20)
+#         func(*args)
+#         print("stop wrapping")
+#     return wrap
+#
+# @access_deco
+# def some(var):
+#     print(f"Hello {var}")
+#
+# some("mama")
