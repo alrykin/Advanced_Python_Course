@@ -48,10 +48,24 @@ def item_detail(id):
         sql = "select * from goods where id = ?"
         request = db_obj.execute(sql, [id])
         item = request.fetchall()[0]
+    specification = item[6].replace('\n', '<br>')
+    return render_template("item_detail.html", item=item, store_title=store_title, specification=specification)
 
-    #return str(item)
-    print(item[6])
-    return render_template("item_detail.html", item=item, store_title=store_title)
+@app.route("/admin")
+def admin_home():
+    with DBContextManager(db) as db_obj:
+        request = db_obj.execute("select category_name, id from categories")
+        result = request.fetchall()
+    categories_dict = {key: value for (key, value) in result}
+    return render_template("admin.html", store_title=store_title, categories_dict=categories_dict)
+
+@app.route("/add_category", methods = ['POST'])
+def add_category():
+    return 'Done'
+@app.route("/add_item", methods = ['POST'])
+def add_item():
+    return 'Done'
+
 
 if __name__ == "__main__":
     app.run(debug=True)

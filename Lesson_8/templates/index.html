@@ -17,7 +17,8 @@
         <a class="navbar-brand" href="/">{{ store_title }}</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+        <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
+        <li><a href="{{ url_for('admin_home') }}"><span class="glyphicon glyphicon-plus"></span> Admin page</a></li>
       </ul>
     </div>
   </nav>
@@ -30,7 +31,8 @@
           <h3>Выберите категорию</h3>
             <div style="margin: 30px;">
               {% for catergory_name, catergory_id in categories_dict.items() %}
-                  <a class="btn btn-primary custom" style=" width: 200px;" href="/goods/{{ catergory_name }}/{{ catergory_id }}">{{ catergory_name }}</a>
+                  <a class="btn btn-primary custom" style=" width: 400px;" href="{{ url_for('goods_by_id', id=catergory_id, category=catergory_name ) }}">{{ catergory_name }}</a>
+                  <!-- <a class="btn btn-primary custom" style=" width: 200px;" href="/goods/{{ catergory_name }}/{{ catergory_id }}">{{ catergory_name }}</a> -->
                   </br></br>
               {% endfor %}
             </div>

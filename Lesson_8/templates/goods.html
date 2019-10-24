@@ -2,7 +2,7 @@
 <html lang="ru">
 
   <head>
-    <title>{{ store_title }} goods</title>
+    <title>{{ store_title }}</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <!-- Optional theme -->
@@ -17,11 +17,11 @@
         <a class="navbar-brand" href="/">{{ store_title }}</a>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li>
+        <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
+        <li><a href="{{ url_for('admin_home') }}"><span class="glyphicon glyphicon-plus"></span> Admin page</a></li>
       </ul>
     </div>
   </nav>
-
 
   <body>
 
@@ -29,9 +29,10 @@
           <h3>Доступные товары по категории {{ category }}</h3>
             <div style="margin: 30px;">
               {% for item_name, item_id in goods.items() %}
-                  <a class="btn btn-primary custom" style=" width: 400px;" href="/item_detail/{{ item_id }}">{{ item_name }}</a>
+                  <a class="btn btn-primary custom" style=" width: 400px;" href="{{ url_for('item_detail', id=item_id) }}">{{ item_name }}</a>
                   </br></br>
               {% endfor %}
+               <a class="btn btn-default" href="{{ url_for('home') }}">Главное меню</a>
             </div>
    </div>
 
