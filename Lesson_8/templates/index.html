@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <title>{{ store_title }}</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">{{ store_title }}</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
+        <li><a href="{{ url_for('admin_home') }}"><span class="glyphicon glyphicon-plus"></span> Admin page</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <body>
+
+    <div align="center" style="margin: 50px;">
+          <h3>Добро пожаловать в систему учета товаров интернет магазина {{ store_title }}!</h3>
+          <h3>Выберите категорию</h3>
+            <div style="margin: 30px;">
+              {% for catergory_name, catergory_id in categories_dict.items() %}
+                  <a class="btn btn-primary custom" style=" width: 400px;" href="{{ url_for('goods_by_id', id=catergory_id, category=catergory_name ) }}">{{ catergory_name }}</a>
+                  <!-- <a class="btn btn-primary custom" style=" width: 200px;" href="/goods/{{ catergory_name }}/{{ catergory_id }}">{{ catergory_name }}</a> -->
+                  </br></br>
+              {% endfor %}
+            </div>
+   </div>
+
+
+  </body>
+
+</html>
