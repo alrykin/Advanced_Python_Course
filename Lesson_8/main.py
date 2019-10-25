@@ -3,7 +3,7 @@
 # На первой странице выводить ссылки на все категории, при переходе на категорию получать
 # список всех товаров в наличии ссылками, при клике на товар выводить его цену, полное описание и кол-во единиц в наличии.
 # 2) Создать страницу для администратора, через которую он может добавлять новые товары и категории.
-from flask import  Flask, render_template, request
+from flask import  Flask, render_template, request, redirect, url_for
 import sqlite3
 
 class DBContextManager:
@@ -61,10 +61,24 @@ def admin_home():
 
 @app.route("/add_category", methods = ['POST'])
 def add_category():
-    return 'Done'
+    category_name = request.form.get('category_name')
+    with DBContextManager(db) as db_obj:
+        sql = "insert into categories ('category_name') values (?)"
+        db_obj.execute(sql, [category_name])
+    return redirect(url_for('admin_home'))
+
 @app.route("/add_item", methods = ['POST'])
 def add_item():
-    return 'Done'
+    item_name = request.form.get('item_name')
+    category = request.form.get('category')
+    price = request.form.get('price')
+    for_sale_count = request.form.get('for_sale_count')
+    on_stock_count = request.form.get('on_stock_count')
+    characteristics = request.form.get('characteristics')
+    with DBContextManager(db) as db_obj:
+        sql = "insert into goods ('name', 'category', 'price', 'for_sale_count', 'on_stock_count', specifications) values (?, ?, ?, ?, ?, ?)"
+        db_obj.execute(sql, [item_name, category, price, for_sale_count, on_stock_count, characteristics])
+    return redirect(url_for('admin_home'))
 
 
 if __name__ == "__main__":
