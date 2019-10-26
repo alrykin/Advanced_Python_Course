@@ -55,26 +55,35 @@ user = User.objects(first_name="John").first()
 # примеры выборок
 user = User.objects(dirth_of_year__gt=1000).first()
 user = User.objects(first_name__in=['John', 'Andry']).first()
-print(user.posts)
+# print(user.posts)
 
 
-print(user.to_json())# превратит в json, можно и к кверисету, вернет список
+# print(user.to_json())# превратит в json, можно и к кверисету, вернет список
+#
+# for p in user.posts:
+#     print(p.title)
+#     print(p.body)
+#     print(p.id)
+#     print(p.added_at)
 
-for p in user.posts:
+
+
+xxx = Post.objects
+for p in xxx:
     print(p.title)
     print(p.body)
     print(p.id)
     print(p.added_at)
-
+    print(p.user)
 # #Пример увеличения значений итерируя
 # users = User.objects(first_name__in=['John', 'Andry'])
 # for u in users:
 #     u.dirth_of_year +=1000
 #     u.save()
 
-# Пример апдейта применяя к кверисету
-users = User.objects(first_name__in=['John', 'Andry']).update(dirth_of_year=1980)
-
-user  = User.objects.first()
-user.create_post(**{"title": "new", "body":"new"})
-user.create_post(**{"title": "newest", "body":"newest"})
+# # Пример апдейта применяя к кверисету
+# users = User.objects(first_name__in=['John', 'Andry']).update(dirth_of_year=1980)
+#
+# user  = User.objects.first()
+# user.create_post(**{"title": "new", "body":"new"})
+# user.create_post(**{"title": "newest", "body":"newest"})
