@@ -22,15 +22,15 @@ connect('students_mgdb')
 
 
 
-# curator = Curator.objects.get(curator_name="Кись Олег Олегович")
-# facultet = Facultet.objects.get(facultet_name="zas")
-# dict_student = {"name":"Кукла Юрий Владимирович",
-#  "study_group":4,
-#  "curator": curator,
-#  "facultet": facultet
-#  }
-#
-# Student(**dict_student).save()
+curator = Curator.objects.get(curator_name="Воловик Владимир Владимирович")
+facultet = Facultet.objects.get(facultet_name="Многоканальная связь")
+dict_student = {"name":"Некоз Василий Владимирович",
+ "study_group":1,
+ "curator": curator,
+ "facultet": facultet
+ }
+
+Student(**dict_student).save()
 
 
 # students = Student.objects()

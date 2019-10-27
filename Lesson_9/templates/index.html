@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html lang="ru">
+{% extends "base.html" %}
 
-  <head>
-    <title>{{ store_title }}</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  </head>
+{% block content %}
 
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/">{{ store_title }}</a>
+        <a class="navbar-brand" href="/">{{ site_title }}</a>
       </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="active"><a href="{{ url_for('home') }}">Cтуденты</a></li>
+        <li><a href="{{ url_for('makrs_page') }}">Оценки</a></li>
+        <li><a href="{{ url_for('facultets_page') }}">Факультеты</a></li>
+        <li><a href="{{ url_for('curators_page') }}">Кураторы</a></li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
-        <li><a href="{{ url_for('admin_home') }}"><span class="glyphicon glyphicon-plus"></span> Admin page</a></li>
+        <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-plus"></span> Добавить студента</a></li>
       </ul>
     </div>
   </nav>
@@ -27,18 +24,35 @@
   <body>
 
     <div align="center" style="margin: 50px;">
-          <h3>Добро пожаловать в систему учета товаров интернет магазина {{ store_title }}!</h3>
-          <h3>Выберите категорию</h3>
-            <div style="margin: 30px;">
-              {% for catergory_name, catergory_id in categories_dict.items() %}
-                  <a class="btn btn-primary custom" style=" width: 400px;" href="{{ url_for('goods_by_id', id=catergory_id, category=catergory_name ) }}">{{ catergory_name }}</a>
-                  <!-- <a class="btn btn-primary custom" style=" width: 200px;" href="/goods/{{ catergory_name }}/{{ catergory_id }}">{{ catergory_name }}</a> -->
-                  </br></br>
-              {% endfor %}
-            </div>
+          <h3>Студенты нашего учебного заведения</h3>
+           <table class="table table-striped">
+             <thead>
+               <tr>
+                 <th>Имя</th>
+                 <th>Учебная группа</th>
+                 <th>Куратор</th>
+                 <th>Факультет</th>
+                 <th>Действие</th>
+               </tr>
+             </thead>
+             <tbody>
+
+                 {% for student in students %}
+                     <tr>
+                       <td>{{ student.name }}</td>
+                       <td>{{ student.study_group }}</td>
+                       <td>{{ student.curator.curator_name }}</td>
+                       <td>{{ student.facultet.facultet_name }}</td>
+                       <td>
+                           <a class="btn btn-primary custom glyphicon glyphicon-edit" href="{{ url_for('home', id=catergory_id, category=catergory_name ) }}"></a>
+                           <a class="btn btn-primary custom glyphicon glyphicon-trash" href="{{ url_for('home', id=catergory_id, category=catergory_name ) }}"></a>
+                       </td>
+                     </tr>
+                 {% endfor %}
+
+                </tbody>
+
+            <table>
    </div>
 
-
-  </body>
-
-</html>
+{% endblock %}

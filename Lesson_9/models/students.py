@@ -17,8 +17,8 @@ class Curator(Document):
 class Facultet(Document):
     facultet_name = StringField(max_length=128)
 
-    # def get_fac_A_students():
-    #     return Student.objects(facultet=self, marks.mark=)
+    def get_fac_a_students(self):
+        return Student.get_a_students(self)
 
 class Student(Document):
     name = StringField(max_length=128)
@@ -34,25 +34,17 @@ class Student(Document):
         kwargs.update(student=self)
         Marks(**kwargs).save()
 
-    # @property
-    # def get_A_students(self):
-    #     return Marks.objects(student=self)
-
-    # @property
-    # def curator(self):
-    #     return Curators.objects(student=self)
-    #
-    # def add_curator(self, **kwargs):
-    #     kwargs.update(student=self)
-    #     Curators(**kwargs).save()
-    #
-    # @property
-    # def facultet(self):
-    #     return Facultets.objects(student=self)
-    #
-    # def add_facultet(self, **kwargs):
-    #     kwargs.update(user=self)
-    #     Curators(**kwargs).save()
+    @classmethod
+    def get_a_students(cls, facultet):
+        """ Метод получения отличников по факультету """
+        students_of_fac = cls.objects(facultet=facultet)
+        a_students = []
+        for i in students_of_fac:
+            st_obj = i
+            st_markavg = Marks.objects(student=i).average('mark')
+            if st_markavg > 4.9:
+                a_students.append(i)
+        return a_students
 
 class Marks(Document):
     subject = StringField(max_length=128)
@@ -60,6 +52,9 @@ class Marks(Document):
     mark = IntField()
 
 
-curator = Curator.objects.get(curator_name="Кись Олег Олегович")
-print(curator.get_curator_students)
-# student = Student.objects.get(name="Кукла Юрий Владимирович")
+
+
+
+# st_marks = st.marks
+# for i in st_marks:
+#     print(i.subject, i.mark)
