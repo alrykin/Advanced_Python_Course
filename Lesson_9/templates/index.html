@@ -15,7 +15,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
-        <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-plus"></span> Добавить студента</a></li>
+        <li><a href="{{ url_for('add_student') }}"><span class="glyphicon glyphicon-plus"></span> Добавить студента</a></li>
       </ul>
     </div>
   </nav>
@@ -32,7 +32,8 @@
                  <th>Учебная группа</th>
                  <th>Куратор</th>
                  <th>Факультет</th>
-                 <th>Действие</th>
+                 <th>Изменить</th>
+                 <th>Удалить</th>
                </tr>
              </thead>
              <tbody>
@@ -43,16 +44,18 @@
                        <td>{{ student.study_group }}</td>
                        <td>{{ student.curator.curator_name }}</td>
                        <td>{{ student.facultet.facultet_name }}</td>
+                       <td><a class="btn btn-primary glyphicon glyphicon-edit" href="{{ url_for('edit_student', student_id=student.id ) }}"></a></td>
                        <td>
-                           <a class="btn btn-primary custom glyphicon glyphicon-edit" href="{{ url_for('home', id=catergory_id, category=catergory_name ) }}"></a>
-                           <a class="btn btn-primary custom glyphicon glyphicon-trash" href="{{ url_for('home', id=catergory_id, category=catergory_name ) }}"></a>
+                           <form method="post" action="/delete_student">
+                               <input type="hidden" name="user_delete_form" value="{{ student.id }}" />
+                               <button class="confirm btn btn-primary glyphicon glyphicon-trash" type="submit"></button>
+                           </form>
                        </td>
                      </tr>
                  {% endfor %}
-
                 </tbody>
-
             <table>
    </div>
+
 
 {% endblock %}

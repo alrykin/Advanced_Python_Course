@@ -9,11 +9,22 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
     <!-- Latest compiled and minified JavaScript -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
 
   <body>
 
       {% block content %}{% endblock %}
+
+      <script>
+        	  $(document).ready(function() {
+              $(".confirm").click(function(event) {
+                if( !confirm('Вы уверены ?') )
+                    event.preventDefault();
+                });
+              });
+      </script>
 
   </body>
 

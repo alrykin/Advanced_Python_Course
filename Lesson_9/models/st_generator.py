@@ -33,8 +33,8 @@ dict_student = {"name":"Некоз Василий Владимирович",
 Student(**dict_student).save()
 
 
-# students = Student.objects()
-# for i in students:
-#     print(i.name)
-#     mark_dict = {"subject":"Военная подготовка", "student": i, "mark": (random.randint(2,5))}
-#     Marks(**mark_dict).save()
+students = Student.objects()
+for i in students:
+    print(i.name)
+    mark_dict = {"subject":"Военная подготовка", "student": i, "mark": (random.randint(2,5))}
+    Marks(**mark_dict).save()

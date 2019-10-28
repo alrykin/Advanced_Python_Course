@@ -27,8 +27,17 @@ class Student(Document):
     facultet = ReferenceField(Facultet)
 
     @property
+    def delete_with_dependencys(self):
+        students_marks = Marks.objects(student=self)
+        students_marks.delete()
+        self.delete()
+
+    @property
     def marks(self):
         return Marks.objects(student=self)
+
+    def by_subject_marks(self, subject):
+        return Marks.objects(student=self, subject=subject)
 
     def add_mark(self, **kwargs):
         kwargs.update(student=self)
@@ -52,9 +61,28 @@ class Marks(Document):
     mark = IntField()
 
 
+# students = Student.objects()
+# for i in students:
+#     print(i.name)
+#     mark_dict = {"subject":"Военная подготовка", "student": i, "mark": (random.randint(2,5))}
+#     Marks(**mark_dict).save()
+
+#
+# x = Marks.objects().aggregate(
+#   {"$group": { "_id": "$subject", "student": { "$push": "$student"}}}
+#         )
+# for i in x:
+#     print("Предмет: " + i['_id'] + ":")
+#     for s in i['student']:
+#         xxx = Student.objects.get(id=s).by_subject_marks(i['_id'])
+#         name = Student.objects.get(id=s).name
+#         marks_str
+#         print(name, xxx[0].mark)
 
 
-
-# st_marks = st.marks
-# for i in st_marks:
-#     print(i.subject, i.mark)
+# studentt = Student.objects.get(name='тест')
+# print(studentt.name)
+#
+# studentt.delete_with_dependencys
+# studentt = Student.objects.get(name='тест')
+# print(studentt.name)
