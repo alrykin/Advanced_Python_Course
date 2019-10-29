@@ -80,11 +80,16 @@ def otlichnic_create():
         i.mark = 5
         i.save()
 
-print("Начинаю геренировать данные")
-facultets_generator()
-curators_generator()
-names_list = names_generator(5)
-student_creator(names_list)
-some_marks_generator()
-otlichnic_create()
-print("Готово")
+print("Сгенерировать данные ?")
+answer = input("Введите Yes для генерации: ")
+if answer == "Yes":
+    print("Начинаю геренировать данные")
+    facultets_generator()
+    curators_generator()
+    names_list = names_generator(5)
+    student_creator(names_list)
+    some_marks_generator()
+    otlichnic_create()
+    print("Готово")
+else:
+    print("Выхожи из программы без каких либо действий.")
