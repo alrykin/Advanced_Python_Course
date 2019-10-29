@@ -12,7 +12,8 @@ class Curator(Document):
 
     def get_curator_students(self):
         """get all curators students"""
-        return Student.objects(curator = self)
+        return Student.objects(curator=self)
+
 
 class Facultet(Document):
     facultet_name = StringField(max_length=128)
@@ -23,14 +24,8 @@ class Facultet(Document):
 class Student(Document):
     name = StringField(max_length=128)
     study_group = IntField()
-    curator = ReferenceField(Curator)
-    facultet = ReferenceField(Facultet)
-
-    @property
-    def delete_with_dependencys(self):
-        students_marks = Marks.objects(student=self)
-        students_marks.delete()
-        self.delete()
+    curator = ReferenceField(Curator, reverse_delete_rule=1)
+    facultet = ReferenceField(Facultet, reverse_delete_rule=1)
 
     @property
     def marks(self):
@@ -57,7 +52,7 @@ class Student(Document):
 
 class Marks(Document):
     subject = StringField(max_length=128)
-    student = ReferenceField(Student)
+    student = ReferenceField(Student, reverse_delete_rule=2)
     mark = IntField()
 
 
@@ -73,11 +68,44 @@ class Marks(Document):
 #         )
 # for i in x:
 #     print("Предмет: " + i['_id'] + ":")
+#     print(i['student'])
 #     for s in i['student']:
 #         xxx = Student.objects.get(id=s).by_subject_marks(i['_id'])
 #         name = Student.objects.get(id=s).name
-#         marks_str
 #         print(name, xxx[0].mark)
+
+# x = Marks.objects().aggregate(
+#   {"$group": { "_id": "$subject", "student": { "$push": "$student"}}}
+#         )
+# for i in x:
+#     subject = i['_id']
+#     subject_students_ids = i['student']
+#     print(subject_students_ids)
+
+
+# dict_to_template = {}
+# marks_subjects = Marks.objects().distinct('subject')
+# for subject in marks_subjects:
+#     dict_to_template[subject] = {}
+#     # print(subject)
+#     ## studetns_with_marks_of_this_subjects
+#     students = Marks.objects(subject=subject).distinct('student')
+#     for student in students:
+#         # print(student.name)
+#         dict_to_template[subject][student.id] = {}
+#         dict_to_template[subject][student.id]['name'] = student.name
+#         dict_to_template[subject][student.id]['marks'] = {}
+#         student_marks = student.by_subject_marks(subject)
+#         for mark in student_marks:
+#             # print(mark.mark)
+#             dict_to_template[subject][student.id]['marks'][mark.id] = mark.mark
+#
+# print(dict_to_template)
+# for i in dict_to_template:
+#     print(i)
+#     for s in dict_to_template[i]:
+#         print(dict_to_template[i][s]['name'])
+#         print(dict_to_template[i][s]['marks'])
 
 
 # studentt = Student.objects.get(name='тест')

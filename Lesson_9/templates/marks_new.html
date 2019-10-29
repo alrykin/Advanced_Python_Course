@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">{{ site_title }}</a>
+    </div>
+    <ul class="nav navbar-nav navbar-left">
+      <li ><a href="{{ url_for('home') }}">Cтуденты</a></li>
+      <li class="active"><a href="{{ url_for('makrs_page') }}">Оценки</a></li>
+      <li><a href="{{ url_for('facultets_page') }}">Факультеты</a></li>
+      <li><a href="{{ url_for('curators_page') }}">Кураторы</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
+      <li><a href="{{ url_for('add_mark') }}"><span class="glyphicon glyphicon-plus"></span> Добавить оценку</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+  <body>
+
+    <div align="center" style="margin: 50px;">
+          <h3>Оценки студентов:</h3>
+           <table class="table">
+                 {% for subject in dict_to_template %}
+                 <tr class="bg-info"><td><b>{{ subject }}<b></td></tr>
+                     {% for i in dict_to_template[subject] %}
+                     <tr>
+                        <td>{{ dict_to_template[subject][i]['name'] }}</td>
+                        {% for mark_id in dict_to_template[subject][i]['marks'] %}
+
+                        <td>
+                        <form id="form_{{ mark_id }}" method="post" action="/edit_mark/{{ mark_id }}" >
+                            <input name="mark_value" type="number" min="2" max="5" required value="{{ dict_to_template[subject][i]['marks'][ mark_id ]}}"
+                            <!-- {{ mark_id }} -->
+                            <!-- <a class="confirm glyphicon glyphicon-ok" href="/edit_mark/{{ mark_id }}"  type="submit"></a> -->
+                            <a class = "confirm glyphicon glyphicon-ok" onclick="document.getElementById('form_{{ mark_id }}').submit()"></a>
+                            <a class = "confirm glyphicon glyphicon-trash" href="/delete_mark/{{ mark_id }}"></a>
+                        </form>
+                        </td>
+
+                        <td></td>
+                        {% endfor %}
+                     </tr>
+                     {% endfor %}
+                 {% endfor %}
+
+            <table>
+   </div>
+
+{% endblock %}

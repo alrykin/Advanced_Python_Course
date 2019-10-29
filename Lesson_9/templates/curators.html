@@ -15,7 +15,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
-      <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-plus"></span> Добавить куратора</a></li>
+      <li><a href="{{ url_for('add_curator') }}"><span class="glyphicon glyphicon-plus"></span> Добавить куратора</a></li>
     </ul>
   </div>
 </nav>
@@ -30,7 +30,8 @@
                <tr>
                  <th>Имя</th>
                  <th>Курируемые студенты</th>
-                 <th>Действие</th>
+                 <th>Изменить</th>
+                 <th>Удалить</th>
                </tr>
              </thead>
              <tbody>
@@ -43,9 +44,12 @@
                                 {{ i.name }}<br>
                            {% endfor %}
                        </td>
+                       <td><a class="btn btn-primary glyphicon glyphicon-edit" href="{{ url_for('edit_curator', curator_id=curator.id ) }}"></a></td>
                        <td>
-                           <a class="btn btn-primary custom glyphicon glyphicon-edit" href="{{ url_for('home', id=catergory_id, category=catergory_name ) }}"></a>
-                           <a class="btn btn-primary custom glyphicon glyphicon-trash" href="{{ url_for('home', id=catergory_id, category=catergory_name ) }}"></a>
+                           <form method="post" action="/delete_curator">
+                               <input type="hidden" name="curator_delete_form" value="{{ curator.id }}" />
+                               <button class="confirm btn btn-primary glyphicon glyphicon-trash" type="submit"></button>
+                           </form>
                        </td>
                      </tr>
                  {% endfor %}

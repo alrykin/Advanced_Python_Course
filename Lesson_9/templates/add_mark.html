@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">{{ site_title }}</a>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="{{ url_for('home') }}">Cтуденты</a></li>
+        <li><a href="{{ url_for('makrs_page') }}">Оценки</a></li>
+        <li><a href="{{ url_for('facultets_page') }}">Факультеты</a></li>
+        <li><a href="{{ url_for('curators_page') }}">Кураторы</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Вход</a></li> -->
+        <li><a href="{{ url_for('makrs_page') }}"> НАЗАД</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <body>
+
+    <div align="center" style="margin: 50px;">
+          <h3>Меню создания оценки студента</h3>
+          <form name="mark_add_form" method="post" action="{{ url_for('add_mark') }}">
+              <b>Введите название предмета: </b><input name="subject_name" type="text" required><br><br>
+              <b>Выберите студента: </b>
+                  <select required name="student" >
+                  {% for student in students %}
+                     <option value='{{ student.id }}'>{{ student.name }}</option>
+                  {% endfor %}
+                  </select>
+              <br><br>
+              <b>Введите оценку (2-5): </b><input name="mark" type="number" min="2" max="5" required><br><br>
+              <br><br>
+                  <button class="btn btn-primary" type="submit">Создать запись</button>
+                  <a class="btn btn-primary" href="{{ url_for('makrs_page') }}">Отмена</a>
+          </form>
+   </div>
+
+{% endblock %}
