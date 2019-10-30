@@ -19,3 +19,7 @@ class Person(Document):
     age = IntField()
     experience = IntField()
     location = EmbeddedDocumentField(Location)
+
+
+# xcx = Person.objects().distinct('id')
+# print(Person5db9a868cad3393209c323e3' in xcx)
