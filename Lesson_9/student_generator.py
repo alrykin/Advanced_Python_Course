@@ -83,10 +83,16 @@ def otlichnic_create():
 print("Сгенерировать данные ?")
 answer = input("Введите Yes для генерации: ")
 if answer == "Yes":
+    number_to_generate = input("Введите требуемое количество студентов: ")
+    if not number_to_generate:
+        number_to_generate = 5
+    else:
+        print("Вы не определили количество студентов. Использую дефолтное значение 5")
+        number_to_generate = int(number_to_generate)
     print("Начинаю геренировать данные")
     facultets_generator()
     curators_generator()
-    names_list = names_generator(5)
+    names_list = names_generator(number_to_generate)
     student_creator(names_list)
     some_marks_generator()
     otlichnic_create()
