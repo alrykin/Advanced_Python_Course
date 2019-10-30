@@ -86,7 +86,7 @@ if answer == "Yes":
     number_to_generate = input("Введите требуемое количество студентов: ")
     if not number_to_generate:
         number_to_generate = 5
-        print("Вы не определили количество студентов. Использую дефолтное значение 5")
+        print("Вы не определили количество студентов. Использую дефолтное значение 5 ")
     else:
         number_to_generate = int(number_to_generate)
     print("Начинаю геренировать данные")
