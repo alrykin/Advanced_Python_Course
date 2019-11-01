@@ -40,19 +40,19 @@ class PostResource(Resource):
         obj.save()
         return PostSchema().dump(Post.objects(id=id).get())
 
-    # def put(self, id):
-    #     return jsonify(**request.json)
-    #     obj = Post.objects(id=id).get()
-    #     obj.update(**request.json)
-    #     return PostSchema().dump(obj.reload())
+    def put(self, id):
+        #return jsonify(**request.json)
+        obj = Post.objects(id=id).get()
+        obj.update(**request.json)
+        return PostSchema().dump(obj.reload())
 
-    # def post(self):
-    #     # return jsonify(**{"metod": "post"})
-    #     validity = PostSchema().validate(request.json)
-    #     if validity:
-    #         return validity
-    #     obj = Post(**request.json).save()
-    #     return PostSchema().dump(obj)
+    def post(self):
+        # return jsonify(**{"metod": "post"})
+        validity = PostSchema().validate(request.json)
+        if validity:
+            return validity
+        obj = Post(**request.json).save()
+        return PostSchema().dump(obj)
 
     # def delete(self, id=None):
     #     # return jsonify(**{"metod": "delete"})
