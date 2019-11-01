@@ -41,7 +41,7 @@ class PostResource(Resource):
         return PostSchema().dump(Post.objects(id=id).get())
 
     # def put(self, id):
-    #     #eturn jsonify(**{"metod": "put"})
+    #     return jsonify(**request.json)
     #     obj = Post.objects(id=id).get()
     #     obj.update(**request.json)
     #     return PostSchema().dump(obj.reload())

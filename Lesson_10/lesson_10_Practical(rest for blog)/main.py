@@ -1,6 +1,4 @@
-from flask import  Flask#, request, Response
-# from models.blog import Author, Tag, Post
-# from schemes.blog_schema import AuthorSchema, TagSchema, PostSchema
+from flask import  Flask
 from flask_restful import Api
 from resources.blog_resource import PostResource, AuthorResource, Post_by_tag_Resource
 
