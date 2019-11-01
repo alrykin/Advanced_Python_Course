@@ -5,9 +5,15 @@ class AuthorSchema(Schema):
     first_name = fields.String(required=True)
     last_name = fields.String(required=True)
 
+
 class TagSchema(Schema):
     id = fields.String()
     name = fields.String(required=True)
+
+    @validates('name')
+    def validate_name(self, value):#название может быть любым
+        if len(value) > 15 or len(value) < 2:
+            raise ValidationError("The length of tag must be from 2 to 15 symbols")
 
 class PostSchema(Schema):
     id = fields.String()
@@ -19,7 +25,7 @@ class PostSchema(Schema):
     author = fields.Nested(AuthorSchema)
 
 
-    # @validates('age')
-    # def validate_age(self, value):#название может быть любым
-    #     if value > 65:
-    #         raise ValidationError("The age must be less than 65")
+    @validates('post')
+    def validate_post(self, value):#название может быть любым
+        if len(value) < 20:
+            raise ValidationError("The length of post must be greater than 20 symbols")
