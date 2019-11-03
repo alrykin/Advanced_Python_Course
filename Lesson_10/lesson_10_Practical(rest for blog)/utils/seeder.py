@@ -6,7 +6,7 @@ from models.blog import Author, Post, Tag
 
 
 author_obj = Author(first_name="Aleksandr", last_name="Yaremenko").save()
-tag_obj = Tag(name="ООП").save()
+tag_obj = Tag(name="OOP").save()
 post_text = """
 (ООП) — методология программирования, основанная на представлении
 программы в виде совокупности объектов, каждый из которых является экземпляром
