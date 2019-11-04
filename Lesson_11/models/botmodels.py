@@ -7,8 +7,6 @@ import datetime
 
 connect("bot_consultand_mgdb")
 
-class Request(Document):
-    pass
 
 class User(Document):
     # reg_stage = IntField(default=0)
@@ -21,3 +19,7 @@ class User(Document):
 
     def get_reg(self):
         return User.objects(author=self).count()
+
+
+class Request(Document):
+    request = ReferenceField(User, reverse_delete_rule=1)
