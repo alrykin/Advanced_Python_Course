@@ -42,6 +42,7 @@ def main_message(message):
     users_id_list = [i.user_id for i in User.objects()]
     if message.from_user.id not in users_id_list:
          start(message)
+         return
     user = User.objects.get(user_id=message.from_user.id)
     if not user.fio:
         if re.match(r"^[А-ЯІЇЄЁ][а-яіїєё']* [А-ЯІЇЄЁ][а-яіїєё']* [А-ЯІЇЄЁ][а-яіїєё']*$", message.text):
