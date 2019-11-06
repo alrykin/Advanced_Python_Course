@@ -28,7 +28,20 @@ class Category(Document):
     def add_subcategory(self, obj):
         self.subcategory.append(obj)
 
-
+    @classmethod
+    def ger_root_categories(cls):
+        categories = Category.objects()
+        list_of_parent = []
+        for i in categories:
+            if i.subcategory:
+                list_of_parent.append(i)
+        root_categories = []
+        for i in list_of_parent:
+            #print(i.title)
+            for n in list_of_parent:
+                if n in i.subcategory:
+                    root_categories.append(i.title)
+        return root_categories
 
 class Product(Document):
     title = StringField(max_length=255)
@@ -48,3 +61,21 @@ class Product(Document):
     @classmethod
     def get_discount_products(cls):
         return cls.objects(is_discount=True, **kwargs)
+
+
+
+# categories = Category.objects()
+# list_of_parent = []
+# for i in categories:
+#     if i.subcategory:
+#         list_of_parent.append(i)
+# root_categories = []
+# for i in list_of_parent:
+#     #print(i.title)
+#     for n in list_of_parent:
+#         if n in i.subcategory:
+#             root_categories.append(i)
+#
+#
+# categories = Category.objects().distinct('title')
+# print(categories)
