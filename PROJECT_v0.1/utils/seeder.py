@@ -47,15 +47,15 @@ beer_obj.add_subcategory(ale_beer_obj)
 beer_obj.save()
 
 
-strong_alco_obj = Category(**{"title": "Крепкие алкогольные напитки", "description": "содержание спирта от 30 до 65 %об."}).save()
+strong_alco_obj = Category(**{"title": "Крепкие алкогольные напитки", "description": "содержание спирта от 30 до 65 %об.", "is_root": True }).save()
 strong_alco_obj.add_subcategory(vodka_obj)
 strong_alco_obj.save()
 
-semi_alco_obj = Category(**{"title": "Среднеалкогольные напитки", "description": "содержание спирта от 9 до 30 %об."}).save()
+semi_alco_obj = Category(**{"title": "Среднеалкогольные напитки", "description": "содержание спирта от 9 до 30 %об.", "is_root":True }).save()
 semi_alco_obj.add_subcategory(vine_obj)
 semi_alco_obj.save()
 
-low_alco_obj = Category(**{"title": "Слабоалкогольные напитки", "description": "содержание спирта от 1,5 до 8 %об."}).save()
+low_alco_obj = Category(**{"title": "Слабоалкогольные напитки", "description": "содержание спирта от 1,5 до 8 %об.", "is_root":True }).save()
 low_alco_obj.add_subcategory(beer_obj)
 low_alco_obj.save()
 
