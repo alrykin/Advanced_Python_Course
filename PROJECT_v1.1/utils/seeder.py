@@ -60,7 +60,7 @@ low_alco_obj.add_subcategory(beer_obj)
 low_alco_obj.save()
 
 
-Product(**{
+product_obj = Product(**{
     "title": "Водка Finlandia",
     "description": "vodka from Finland",
     "price": 18900,
@@ -68,11 +68,14 @@ Product(**{
     "is_discount": True,
     "properties": Properties(**{"weight": 0.5}),
     "category": i_vodka_obj,
-
     }
 ).save()
+product_photo = open('foto/vodka__finlandia.jpg', 'rb')
+product_obj.photo.put(product_photo, content_type = 'image/jpeg')
+product_obj.save()
 
-priduct_obj = Product(**{
+
+product_obj = Product(**{
     "title": "Водка Nemiroff Premium De Luxe",
     "description": "Премиум водка от именитого Украинского производителя",
     "price": 17900,
@@ -82,9 +85,11 @@ priduct_obj = Product(**{
     "category": ua_vodka_obj,
     }
 ).save()
+product_photo = open('foto/vodka__nemiroff.jpg', 'rb')
+product_obj.photo.put(product_photo, content_type = 'image/jpeg')
+product_obj.save()
 
-
-priduct_obj = Product(**{
+product_obj = Product(**{
     "title": "Вино Saperavi",
     "description": "Красное полусладкое; Производитель: Ichkitidze Gocha's Estate Wines; Крепость: 13%; Сахар: 3г/л",
     "price": 33500,
@@ -94,9 +99,11 @@ priduct_obj = Product(**{
     "category": g_vine_obj,
     }
 ).save()
+product_photo = open('foto/vine__saperavi.jpg', 'rb')
+product_obj.photo.put(product_photo, content_type = 'image/jpeg')
+product_obj.save()
 
-
-priduct_obj = Product(**{
+product_obj = Product(**{
     "title": "Вино Шардоне",
     "description": "Белое Сухое; Производитель: Колонiст; Крепость: 13%",
     "price": 19400,
@@ -106,10 +113,13 @@ priduct_obj = Product(**{
     "category": ua_vine_obj,
     }
 ).save()
+product_photo = open('foto/vine__shardone.jpg', 'rb')
+product_obj.photo.put(product_photo, content_type = 'image/jpeg')
+product_obj.save()
 
-priduct_obj = Product(**{
+product_obj = Product(**{
     "title": "Пиво BrewDog Cocoa Psycho",
-    "description": "Имперский стаут; Производитель: Brew Dog,; Крепость: 10%",
+    "description": "Имперский стаут; Производитель: Brew Dog; Крепость: 10%",
     "price": 19900,
     "new_price": 0,
     "is_discount": False,
@@ -117,8 +127,11 @@ priduct_obj = Product(**{
     "category": stout_beer_obj,
     }
 ).save()
+product_photo = open('foto/beer__BrewDogCocoaPsycho.jpg', 'rb')
+product_obj.photo.put(product_photo, content_type = 'image/jpeg')
+product_obj.save()
 
-priduct_obj = Product(**{
+product_obj = Product(**{
     "title": "Пиво Easy IPA",
     "description": "Эль с пряными нотками; Производитель: Flying Dog; Крепость: 4.7%",
     "price": 9500,
@@ -128,3 +141,6 @@ priduct_obj = Product(**{
     "category": ale_beer_obj,
     }
 ).save()
+product_photo = open('foto/beer__EasyIPA.jpg', 'rb')
+product_obj.photo.put(product_photo, content_type = 'image/jpeg')
+product_obj.save()

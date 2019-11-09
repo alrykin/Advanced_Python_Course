@@ -5,6 +5,11 @@
 # (Необязательно сделать вывод подкатегорий с удаленимем предыдущего сообщения))
 # sales кнопку - не трогаем.
 
+# #TODO LESSON 2
+# 1. Реализовать вывод продуктов.
+# 1.1 Выводить товары с картинкой.
+# 2. Реализация корзины. -> Создать таблицу юзера -> Связать юзера и список товаров
+
 import telebot
 import config
 import keyboards
@@ -73,25 +78,30 @@ def show_products_or_subcategory(call):
             text="Сделайте свой выбор",
             reply_markup=keyboard.generate_ikb()
         )
+
     else:
-        print(call.data)
+        #print(call.data)
+        product_objects = category.get_products()
+        for i in product_objects:
+            photo = i.photo.read()
+            markup = telebot.types.InlineKeyboardMarkup()
+            button = telebot.types.InlineKeyboardButton(text='Добавить в корзину', callback_data='add-to-cart_' + str(i.id))
+            markup.add(button)
+            bot.send_message(call.message.chat.id, parse_mode='HTML', text=f"<b>{i.title}</b>")
+            bot.send_photo(call.message.chat.id, photo, parse_mode='HTML', caption=f"<b>Цена: " + str(i.price/100) + "</b>" + f" {i.description}", reply_markup=markup)
 
 
-
-# @bot.callback_query_handler(func=lambda call: True)
-# def callback_inline(call):
-#     # Если сообщение из чата с ботом
-#     if call.message:
-#         endpoint_categories = models.Category.objects(subcategory=[]).distinct("title")
-#         if call.data not in endpoint_categories:
-#             sub_categories = models.Category().get_subcategories(call.data)
-#             keyboard = ReplyIKB().generate_ikb(*sub_categories)
-#             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text='Сделайте свой выбор', reply_markup=keyboard)
-#         else:
-#             print(call.data)# здесь в дальнейшем реализовать выовод самих товаров
-#     else:
-#         pass
-
+@bot.callback_query_handler(func=lambda call: call.data.split('_')[0] == 'add-to-cart')
+def add_to_cart(call):
+    # user_last_name = call.from_user.last_name
+    # user_first_name = call.from_user.first_name
+    if call.from_user.id not in models.User.objects.distinct("user_id"):
+        user_obj = models.User(**{"user_id" : call.from_user.id}).save()
+    else:
+        user_obj = models.User.objects.get(user_id=call.from_user.id)
+    product_obj = models.Product.objects.get(id=call.data.split('_')[1])
+    models.Cart(**{"user" : user_obj, "product": product_obj}).save()
+    print(str("Пользователь: " + str(call.from_user.id) + " добавил в корзину товар: "  + call.data.split('_')[1]))
 
 
 if __name__ == "__main__":

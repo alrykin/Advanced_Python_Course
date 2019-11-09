@@ -50,6 +50,7 @@ class Product(Document):
     is_discount = BooleanField(default=False)
     properties = EmbeddedDocumentField(Properties)
     category = ReferenceField(Category)
+    photo = FileField()
 
     @property
     def get_price(self):
@@ -60,3 +61,12 @@ class Product(Document):
     @classmethod
     def get_discount_products(cls):
         return cls.objects(is_discount=True, **kwargs)
+
+
+class User(Document):
+    user_id = IntField()
+
+
+class Cart(Document):
+    user = ReferenceField(User)
+    product = ReferenceField(Product)
