@@ -1,4 +1,5 @@
 from mongoengine import *
+import datetime
 
 connect("web_shop_bot")
 
@@ -47,7 +48,7 @@ class Category(Document):
     @classmethod
     def get_root_categories(cls):
         return cls.objects(parent=None)
-        # return root_categories
+
 
 class Product(Document):
     title = StringField(max_length=255)
@@ -81,8 +82,13 @@ class Cart(Document):
     product = ReferenceField(Product)
     active = BooleanField(default=True)
 
-    def get_catr_summ(self):
-        pass
+    def get_catr_summ(self, user_obj):
+        total_summ = 0
+        products_of_user = Cart.objects(user=user_obj)
+        for i in products_of_user:
+            total_summ = total_summ  + i.product.get_price
+        return total_summ
 
-# print(Product.objects(is_discount=True).sum('price') / 100)
-# print(Product.objects(is_discount=False).sum('price') / 100)
+class OrderHistory(Document):
+    cart = ReferenceField(Cart)
+    datetime = DateTimeField(default=datetime.datetime.now())
