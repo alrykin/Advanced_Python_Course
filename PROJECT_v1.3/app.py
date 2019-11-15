@@ -36,7 +36,7 @@ STORE_TITLE = "AlcoStore"
 bot = telebot.TeleBot(config.TOKEN)
 
 # Process webhook calls
-@app.route(WEBHOOK_URL_PATH, methods=['POST'])
+@app.route(config.handle_url, methods=['POST'])
 def webhook():
     if flask.request.headers.get('content-type') == 'application/json':
         json_string = flask.request.get_data().decode('utf-8')
