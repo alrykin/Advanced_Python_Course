@@ -18,15 +18,7 @@ def home():
 @app.route("/add_student", methods = ['GET','POST'])
 def add_student():
     if request.method == 'POST':
-        student_name = request.form.get('student_name')
-        student_group_number = request.form.get('student_group_number')
-        student_curator = request.form.get('student_curator')
-        student_facultet = request.form.get('student_facultet')
-        dict_student = {"name": student_name,
-         "study_group": student_group_number,
-         "curator": student_curator,
-         "facultet": student_facultet
-         }
+        dict_student = request.form.to_dict()
         Student(**dict_student).save()
         return redirect(url_for('home'))
     else:
@@ -49,9 +41,9 @@ def edit_student(student_id):
         curators = Curator.objects.all()
         return render_template("edit_student.html", site_title=site_title, student=student, facultets=facultets, curators=curators)
     elif request.method == 'POST':
+        # list comprehension тут не получается в связи с потребностью передавать именно обьект куратора и факультет
         student.name = request.form.get('student_name')
         student.study_group = request.form.get('student_group_number')
-        print(Curator.objects.get(id=request.form.get('student_curator')))
         student.curator = Curator.objects.get(id=request.form.get('student_curator'))
         student.facultet = Facultet.objects.get(id=request.form.get('student_facultet'))
         student.save()
@@ -113,7 +105,6 @@ def makrs_page():
 @app.route("/edit_mark/<mark_id>", methods = ['POST'])
 def edit_mark(mark_id):
     mark_to_edit = Marks.objects.get(id=mark_id)
-    # print(mark)
     mark_to_edit.mark = request.form.get('mark_value')
     mark_to_edit.save()
     return redirect(url_for('makrs_page'))
@@ -130,10 +121,7 @@ def add_mark():
         students = Student.objects()
         return render_template("add_mark.html", site_title=site_title, students=students)
     else:
-        subject_name = request.form.get('subject_name')
-        student = request.form.get('student')
-        mark = request.form.get('mark')
-        mark_dict = {"subject":subject_name, "student": student, "mark": mark}
+        mark_dict = request.form.to_dict()
         Marks(**mark_dict).save()
         return redirect(url_for('makrs_page'))
 

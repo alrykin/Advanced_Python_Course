@@ -26,7 +26,7 @@
     <div align="center" style="margin: 50px;">
           <h3>Меню создания оценки студента</h3>
           <form name="mark_add_form" method="post" action="{{ url_for('add_mark') }}">
-              <b>Введите название предмета: </b><input name="subject_name" type="text" required><br><br>
+              <b>Введите название предмета: </b><input name="subject" type="text" required><br><br>
               <b>Выберите студента: </b>
                   <select required name="student" >
                   {% for student in students %}

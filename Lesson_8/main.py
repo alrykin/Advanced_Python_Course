@@ -69,12 +69,10 @@ def add_category():
 
 @app.route("/add_item", methods = ['POST'])
 def add_item():
-    item_name = request.form.get('item_name')
-    category = request.form.get('category')
-    price = request.form.get('price')
-    for_sale_count = request.form.get('for_sale_count')
-    on_stock_count = request.form.get('on_stock_count')
-    characteristics = request.form.get('characteristics')
+    item_name, category, price, for_sale_count, on_stock_count, characteristics = (
+        request.form[s] for s in ("item_name", "category", "price", "for_sale_count", "on_stock_count", "characteristics")
+    )
+
     with DBContextManager(db) as db_obj:
         sql = "insert into goods ('name', 'category', 'price', 'for_sale_count', 'on_stock_count', specifications) values (?, ?, ?, ?, ?, ?)"
         db_obj.execute(sql, [item_name, category, price, for_sale_count, on_stock_count, characteristics])

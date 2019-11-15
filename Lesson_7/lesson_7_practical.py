@@ -8,14 +8,12 @@ class DBContextManager:
         self._db = db
 
     def __enter__(self):
-        #print("db context manager enter")
         self._conn = sqlite3.connect(self._db)
         self._cursor = self._conn.cursor()
         return self._cursor
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        #print("exit from db context manager, closing db")
-        self._conn.commit()
+        #self._conn.commit()
         self._conn.close()
 
 
@@ -214,6 +212,7 @@ class Interface():
         with DBContextManager(self._db) as db_obj:
             sql = "insert into students ('name', 'facultet', 'study_group', 'student_number') values (?, ?, ?, ?)"
             db_obj.execute(sql, [student_name, int(student_facultet), student_group_number, student_number])
+            db_obj.execute('commit')
             print("Запись добавлена")
 
 
@@ -267,6 +266,7 @@ class Interface():
         with DBContextManager(self._db) as db_obj:
             sql = "update students set 'name' = ?, 'facultet' = ?, 'study_group' = ?  where student_number = ?"
             db_obj.execute(sql, [student_name, int(student_facultet), student_group_number, student_number])
+            db_obj.execute('commit')
             print("Запись изменена")
 
 

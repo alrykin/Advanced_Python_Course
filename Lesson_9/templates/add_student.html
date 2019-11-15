@@ -26,17 +26,17 @@
     <div align="center" style="margin: 50px;">
           <h3>Меню создания нового студента</h3>
           <form name="user_add_form" method="post" action="{{ url_for('add_student') }}">
-              <b>Введите имя нового cтудента: </b><input name="student_name" type="text" required><br><br>
-              <b>Введите номер учебной  группы: </b><input name="student_group_number" type="number" required><br><br>
+              <b>Введите имя нового cтудента: </b><input name="name" type="text" required><br><br>
+              <b>Введите номер учебной  группы: </b><input name="study_group" type="number" required><br><br>
               <b>Выберите куратора: </b>
-                  <select required name="student_curator" >
+                  <select required name="curator" >
                   {% for curator in curators %}
                      <option value='{{ curator.id }}'>{{ curator.curator_name }}</option>
                   {% endfor %}
                   </select>
               <br><br>
               <b>Выберите факультет: </b>
-                  <select required name="student_facultet" >
+                  <select required name="facultet" >
                   {% for facultet in facultets %}
                      <option value='{{ facultet.id }}'>{{ facultet.facultet_name }}</option>
                   {% endfor %}
