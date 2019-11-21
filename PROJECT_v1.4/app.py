@@ -37,7 +37,7 @@ STORE_TITLE = "AlcoStore"
 bot = telebot.TeleBot(config.TOKEN)
 
 # Process webhook calls
-@app.route('/', methods=['POST'])
+@app.route(config.handle_url, methods=['POST'])
 def webhook():
     if request.headers.get('content-type') == 'application/json':
         json_string = request.get_data().decode('utf-8')
