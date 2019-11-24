@@ -44,14 +44,9 @@
 import time
 from threading import Thread
 
-print("111")
-
 def some_f(x):
     while True:
-        time.sleep(x)
         print(x)
+        time.sleep(x)
 
 Thread(target=some_f, args=(3,)).start()
-
-
-print("222")

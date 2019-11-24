@@ -19,6 +19,11 @@
 #     4.1 Аккаунт на гугл клауде
 #     4.2 Там создать экземпляр виртуальной машины с Ubuntu 18.04 server
 
+#TODO 4
+# 1. Реализовать REST для, категорий, продуктов и текстов
+# 2. Доавить крон менеджер, который будет раз в сутки проверять, не
+#залочил ли человек бота.
+
 from telebot.types import (
     InlineKeyboardMarkup,
     InlineKeyboardButton
@@ -27,25 +32,49 @@ import telebot
 import config
 import keyboards
 from keyboards import ReplyKB, ReplyIKB
+from mycronmanager import MyCronManager
 from models import models
 from flask import Flask, request, abort
+from threading import Thread
 import time
+from telebot.apihelper import ApiException
+import json
+
 
 app = Flask(__name__)
+
 
 STORE_TITLE = "AlcoStore"
 bot = telebot.TeleBot(config.TOKEN)
 
-# Process webhook calls
+
+@MyCronManager.mycronmanager_deco()
+def banned_check():
+    """Function to check if the user is blocking or unbliking us"""
+    for user in models.User.objects():
+        try:
+            bot.send_chat_action(user.user_id, 'typing')
+            if user.block_us == True:
+                user.update(block_us=False)
+                print("User with id " + str(user.user_id) + " unblock us! Yahoo! Glad to see him again")
+        except ApiException as e:
+            if "blocked by the user" in json.loads(e.result.text)['description']:
+                if not user.block_us == True:
+                    print("User with id " + str(user.user_id) + " blocked us !")
+                    user.update(block_us=True)
+
+cron_manager = MyCronManager()
+cron_manager.add(banned_check)
+cron_manager.run()
+
+
+#Process webhook calls
 @app.route(config.handle_url, methods=['POST'])
 def webhook():
     if request.headers.get('content-type') == 'application/json':
         json_string = request.get_data().decode('utf-8')
-        time.sleep(0.02)
         update = telebot.types.Update.de_json(json_string)
-        time.sleep(0.02)
         bot.process_new_updates([update])
-        time.sleep(0.02)
         return ''
     else:
         flask.abort(403)
@@ -74,6 +103,12 @@ def main_text_handler(message):
     elif message.text.lower() == 'последние новости':
         about_str = models.Texts.objects(title='Last news').get().body
         bot.send_message(message.chat.id, about_str)
+        main_menu(message)
+        return
+
+    elif message.text.lower() == 'ктоя':
+        about_str = models.Texts.objects(title='Last news').get().body
+        bot.send_message(message.chat.id, str(message.chat.id))
         main_menu(message)
         return
 
@@ -206,7 +241,7 @@ if __name__ == "__main__":
     bot.remove_webhook()
     time.sleep(1)
     bot.set_webhook(config.webhook_url,
-        certificate=open('webhook_cert.pem','r'))
+       certificate=open('webhook_cert.pem','r'))
     print("bot started")
     app.run(debug=True)
-    # bot.polling(none_stop=True)
+    #bot.polling(none_stop=True)

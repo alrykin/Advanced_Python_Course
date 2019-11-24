@@ -73,6 +73,7 @@ class Product(Document):
 
 class User(Document):
     user_id = IntField()
+    block_us = BooleanField(default=False)
 
     def get_user_catr(self):
         return Cart.objects(user=self)
