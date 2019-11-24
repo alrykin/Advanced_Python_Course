@@ -47,7 +47,7 @@ app = Flask(__name__)
 STORE_TITLE = "AlcoStore"
 bot = telebot.TeleBot(config.TOKEN)
 
-
+# default period value = 24 hrs check (see mycronmanager.py)
 @MyCronManager.mycronmanager_deco()
 def banned_check():
     """Function to check if the user is blocking or unbliking us"""
@@ -65,7 +65,7 @@ def banned_check():
 
 cron_manager = MyCronManager()
 cron_manager.add(banned_check)
-cron_manager.run()
+#cron_manager.run()
 
 
 #Process webhook calls
@@ -243,5 +243,6 @@ if __name__ == "__main__":
     bot.set_webhook(config.webhook_url,
        certificate=open('webhook_cert.pem','r'))
     print("bot started")
+    cron_manager.run()
     app.run(debug=True)
     #bot.polling(none_stop=True)
