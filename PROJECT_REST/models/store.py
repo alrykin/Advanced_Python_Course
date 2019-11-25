@@ -16,7 +16,7 @@ class Properties(DynamicEmbeddedDocument):
 class Category(Document):
     title = StringField(max_length=255, required=True)
     description = StringField(max_length=512)
-    subcategory = ListField(ReferenceField('self'))
+    subcategory = ListField(ReferenceField('self', reverse_delete_rule=4))
     parent = ReferenceField('self')
 
     @property
