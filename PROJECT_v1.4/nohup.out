@@ -1,0 +1,822 @@
+[2019-11-24 22:21:52 +0000] [26426] [INFO] Starting gunicorn 20.0.0
+[2019-11-24 22:21:52 +0000] [26426] [INFO] Listening at: http://127.0.0.1:5000 (26426)
+[2019-11-24 22:21:52 +0000] [26426] [INFO] Using worker: sync
+[2019-11-24 22:21:52 +0000] [26430] [INFO] Booting worker with pid: 26430
+[2019-11-24 22:22:41 +0000] [26426] [INFO] Handling signal: hup
+[2019-11-24 22:22:41 +0000] [26426] [INFO] Hang up: Master
+[2019-11-24 22:22:41 +0000] [26442] [INFO] Booting worker with pid: 26442
+2019-11-25 07:10:26,719 (util.py:65 WorkerThread1) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-25 07:10:30,523 (util.py:65 WorkerThread2) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-25 12:06:38,879 (util.py:65 WorkerThread2) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-25 12:06:45,611 (util.py:65 WorkerThread1) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+[2019-11-25 16:26:53 +0000] [26442] [INFO] Parent changed, shutting down: <Worker 26442>
+[2019-11-25 16:26:53 +0000] [26442] [INFO] Worker exiting (pid: 26442)
+[2019-11-25 19:02:54 +0000] [12462] [INFO] Starting gunicorn 20.0.0
+[2019-11-25 19:02:54 +0000] [12462] [INFO] Listening at: http://127.0.0.1:5000 (12462)
+[2019-11-25 19:02:54 +0000] [12462] [INFO] Using worker: sync
+[2019-11-25 19:02:54 +0000] [12466] [INFO] Booting worker with pid: 12466
+[2019-11-25 19:04:09 +0000] [12466] [INFO] Parent changed, shutting down: <Worker 12466>
+[2019-11-25 19:04:09 +0000] [12466] [INFO] Worker exiting (pid: 12466)
+[2019-11-25 19:07:47 +0000] [12748] [INFO] Starting gunicorn 20.0.0
+[2019-11-25 19:07:47 +0000] [12748] [INFO] Listening at: http://127.0.0.1:5000 (12748)
+[2019-11-25 19:07:47 +0000] [12748] [INFO] Using worker: sync
+[2019-11-25 19:07:47 +0000] [12752] [INFO] Booting worker with pid: 12752
+[2019-11-25 19:21:15 +0000] [12748] [INFO] Handling signal: hup
+[2019-11-25 19:21:15 +0000] [12748] [INFO] Hang up: Master
+[2019-11-25 19:21:15 +0000] [12934] [INFO] Booting worker with pid: 12934
+2019-11-26 06:54:36,379 (util.py:65 WorkerThread2) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 170, in show_products_or_subcategory
+    reply_markup=keyboard
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 996, in edit_message_text
+    disable_web_page_preview, reply_markup)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 621, in edit_message_text
+    return _make_request(token, method_url, params=payload)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-26 12:46:24,525 (util.py:65 WorkerThread2) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-26 12:46:27,175 (util.py:65 WorkerThread1) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-26 15:15:40,507 (util.py:65 WorkerThread2) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-26 15:15:42,764 (util.py:65 WorkerThread1) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
+2019-11-26 16:57:43,567 (util.py:65 WorkerThread2) ERROR - TeleBot: "ConnectionError occurred, args=(ProtocolError('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer')),)
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 720, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 400, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 734, in reraise
+    raise value.with_traceback(tb)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 672, in urlopen
+    chunked=chunked,
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 416, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1346, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 307, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 268, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/util.py", line 59, in run
+    task(*args, **kwargs)
+  File "/home/everslab/projects/Advanced_Python_Course/PROJECT_v1.4/app.py", line 134, in main_text_handler
+    bot.send_message(message.chat.id, "Корзина пуста")
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/__init__.py", line 598, in send_message
+    reply_markup, parse_mode, disable_notification))
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 140, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 54, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 533, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/sessions.py", line 646, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/everslab/projects/venv/lib/python3.6/site-packages/requests/adapters.py", line 498, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+"
